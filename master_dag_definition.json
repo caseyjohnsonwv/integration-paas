@@ -1,0 +1,32 @@
+[
+    {
+        "name" : "employees_exporter",
+        "cron_schedule" : "0/10 * * * *",
+        "source" : {
+            "url" : "https://dummy.restapiexample.com/api/v1/employees",
+            "headers" : [
+                {
+                    "name" : "accept",
+                    "value" : "*/*"
+                },
+                {
+                    "name" : "user-agent",
+                    "value" : "request"
+                }
+            ]
+        },
+        "transformer" :{
+            "py_file_name" : "employees_exporter",
+            "function_name" : "transform"
+        },
+        "destination" : {
+            "url" : "http://httpbin.org/post",
+            "headers" : [
+                {
+                    "name" : "content-type",
+                    "value" : "application/json"
+                }
+            ]
+        }
+    }
+]
